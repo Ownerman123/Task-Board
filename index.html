@@ -19,6 +19,7 @@
   <header class="p-4 mb-4 text-center border-bottom border-5">
     <h1 class="display-3">Task Board</h1>
     <p class="lead">A simple Kanban board for task management</p>
+    <p id="current-date"></p>
   </header>
   <div class="container">
     <div class="text-center mb-5">
@@ -38,17 +39,17 @@
               <div class="row">
               <div class="mb-3 col-6">
                 <label for="task">Task Title</label>
-                <input type="text" name="task" id="task" >
+                <input type="text" name="task" id="task" class="form-control" >
               </div>
               <div class="mb-3 col-6">
                 <label for="due-date">Due Date</label>
-                <input type="date" name="due-date" id="due-date">
+                <input type="text" name="due-date" id="due-date" class="form-control">
               </div>
             </div>
             <div class="row">
               <div class="mb-3 col-12">
                 <label for="task-desc">Task Description</label>
-                <input type="text" name="task-desc" id="task-desc">
+                <textarea type="text" name="task-desc" id="task-desc" class="form-control"></textarea>
               </div>
             </div>  
             <div class="modal-footer justify-content-center">
