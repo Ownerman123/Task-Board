@@ -46,7 +46,7 @@ function saveTasksToStorage(tasks) {
 // Todo: create a function to create a task card
 function createTaskCard(task) {
 
-    const cardContainer = $('<div>').attr('data-task-id', task.id).addClass('fluid-container card task-card draggable my-3');
+    const cardContainer = $('<div>').attr('data-task-id', task.id).attr('data-task-status', task.status).addClass('fluid-container card task-card draggable my-3');
 
     const cardHeader = $('<h5>').addClass('card-header h4').text(task.title);
 
@@ -62,10 +62,7 @@ function createTaskCard(task) {
     .attr('data-task-id', task.id);
    
 
-    if (task.dueDate && task.status !== 'done') {
-        const now = dayjs();
-        const taskDueDate = dayjs(task.date, 'DD/MM/YYYY');
-    }
+    
 
     if (today.isSame(task.date, 'day')) {
         cardContainer.addClass('bg-warning text-white');
@@ -73,6 +70,12 @@ function createTaskCard(task) {
         cardContainer.addClass('bg-danger text-white');
         cardBtn.addClass('border-light');
       }
+
+    if (task.status === 'done') {
+        cardContainer.removeClass('bg-warning')
+        cardContainer.addClass('bg-success text-white');
+        cardBtn.addClass('border-light');
+    }
 
       cardBtn.on('click', handleDeleteTask)
 
@@ -111,13 +114,13 @@ function renderTaskList() {
   $('.draggable').draggable({
     opacity: 0.7,
     zIndex: 100,
-    // ? This is the function that creates the clone of the card that is dragged. This is purely visual and does not affect the data.
+    
     helper: function (e) {
-      // ? Check if the target of the drag event is the card itself or a child element. If it is the card itself, clone it, otherwise find the parent card  that is draggable and clone that.
+      
       const original = $(e.target).hasClass('ui-draggable')
         ? $(e.target)
         : $(e.target).closest('.ui-draggable');
-      // ? Return the clone with the width set to the width of the original card. This is so the clone does not take up the entire width of the lane. This is to also fix a visual bug where the card shrinks as it's dragged to the right.
+      
       return original.clone().css({
         width: original.outerWidth(),
       });
