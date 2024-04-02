@@ -11,7 +11,7 @@ to create a task click add a task and then fill out the form in the modal with y
 
 ## Deployed application
 
-https://ownerman123.github.io/
+https://ownerman123.github.io/Task-Board/
 
 ## ScreenShots
 
